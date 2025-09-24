@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+void swapCase(char* s) {
+    for (; *s; ++s) {
+        if (*s >= 'a' && *s <= 'z') *s = 'A' + (*s - 'a');
+        else if (*s >= 'A' && *s <= 'Z') *s = 'a' + (*s - 'A');
+    }
+}
+
+int main(void) {
+    char s[1001];
+    if (fgets(s, sizeof(s), stdin)) {
+        for (char* p = s; *p; ++p) {
+            if (*p == '\n') { *p = '\0'; break; }
+        }
+        swapCase(s);
+        printf("%s\n", s);
+    }
+    return 0;
+}
