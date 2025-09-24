@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int isPalindrome(const char* s) {
+    const char* i = s;
+    const char* j = s;
+    while (*j) ++j;
+    --j;
+    while (i < j) {
+        char a = *i, b = *j;
+        // tolower without <ctype.h>
+        if (a >= 'A' && a <= 'Z') a = a - 'A' + 'a';
+        if (b >= 'A' && b <= 'Z') b = b - 'A' + 'a';
+        if (a != b) return 0;
+        ++i; --j;
+    }
+    return 1;
+}
+
+int main(void) {
+    char s[1001];
+    if (fgets(s, sizeof(s), stdin)) {
+        for (char* p = s; *p; ++p) {
+            if (*p == '\n') { *p = '\0'; break; }
+        }
+        printf("%s\n", isPalindrome(s) ? "Palindrome" : "Not palindrome");
+    }
+    return 0;
+}
